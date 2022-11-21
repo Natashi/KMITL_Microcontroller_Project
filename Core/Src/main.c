@@ -576,8 +576,6 @@ int main(void)
 			ILI9341_Draw_Rectangle(240, 200, 60, 30, RED);
 			ILI9341_Draw_Text("BACK", 245, 210, BLACK, 2, RED);
 
-			int divSize = lenEnd / 8;
-
 			{
 				MusicPlayer_SetIsRecording(&musicPlayer, bRecordMenu);
 				MusicPlayer_Start(&musicPlayer, posSelected);
@@ -598,13 +596,6 @@ int main(void)
 					float rate = sec / ((float)lenEnd - 1);
 					if (rate > 1) rate = 1;
 					ILI9341_Draw_Rectangle(90, 110, (240 - 90) * rate, 20, WHITE);
-					/*
-					for (int i = 1; i <= 7; ++i) {
-						if (sec >= divSize * i) {
-							ILI9341_Draw_Rectangle(90 + 20 * (i - 1), 110, 10, 20, RED);
-						}
-					}
-					*/
 
 					if (!bRecordMenu) {
 						// END
@@ -636,6 +627,8 @@ int main(void)
 						if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK) {
 							y_pos = 240 - position_array[0];
 							x_pos = position_array[1];
+
+							//ILI9341_Draw_Rectangle(x_pos, y_pos, 4, 4, WHITE);
 
 							if (!bRecordMenu) {
 								// PAUSE

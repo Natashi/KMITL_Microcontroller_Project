@@ -96,7 +96,8 @@ void MusicPlayer_Pause(MusicPlayer* player) {
 		HAL_TIM_Base_Stop(TIMER_LOADKEYS);
 	}
 	else if (player->playerState == MPLAYER_PAUSED) {
-		HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+		player->playerState = MPLAYER_PLAYING;
+
 		HAL_TIM_Base_Start_IT(TIMER_SENDPCM);
 		HAL_TIM_Base_Start_IT(TIMER_LOADKEYS);
 	}
